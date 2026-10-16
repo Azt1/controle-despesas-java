@@ -2,6 +2,7 @@ package br.com.azt1.despesas.repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.time.YearMonth;
 
 import org.springframework.stereotype.Repository;
 
@@ -31,6 +32,19 @@ public class LancamentoRepository {
         List<Lancamento> resultado = new ArrayList<>();
         for (Lancamento lancamento : lancamentos) {
             if (lancamento.getTipo() == tipo) {
+                resultado.add(lancamento);
+            }
+        }
+        return resultado;
+    }
+
+    public synchronized List<Lancamento> listarPorMes(YearMonth mes) {
+        if (mes == null) {
+            throw new IllegalArgumentException("O mês é obrigatório.");
+        }
+        List<Lancamento> resultado = new ArrayList<>();
+        for (Lancamento lancamento : lancamentos) {
+            if (YearMonth.from(lancamento.getData()).equals(mes)) {
                 resultado.add(lancamento);
             }
         }
