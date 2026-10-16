@@ -7,15 +7,18 @@ Esta lista acompanha o desenvolvimento. Os itens marcados já estão implementad
 - [x] Criar uma classe para receita e despesa, com descrição, valor e data.
 - [x] Usar `BigDecimal` para os valores monetários.
 - [x] Validar descrição obrigatória e valor maior que zero.
-- [ ] Cadastrar e listar lançamentos, começando sem banco.
+- [x] Cadastrar e listar lançamentos em memória, por meio das classes Java.
 - [x] Escrever testes das primeiras regras.
+- [x] Consultar lançamentos por tipo ou mês e ano.
+- [x] Calcular o saldo de um mês e ano.
+- [ ] Expor o cadastro e as consultas pela API.
 
 ## Depois: organização e consultas
 
 - Adicionar categorias.
 - Permitir editar e excluir lançamentos.
-- Filtrar por mês e tipo.
-- Calcular receitas, despesas e saldo do período.
+- Combinar os filtros por mês e tipo numa mesma consulta.
+- Consultar separadamente os totais de receitas e despesas do período.
 
 ## Persistência
 
