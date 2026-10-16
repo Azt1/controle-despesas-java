@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import br.com.azt1.despesas.model.Lancamento;
+import br.com.azt1.despesas.model.TipoLancamento;
 
 @Repository
 public class LancamentoRepository {
@@ -21,5 +22,18 @@ public class LancamentoRepository {
 
     public synchronized List<Lancamento> listar() {
         return new ArrayList<>(lancamentos);
+    }
+
+    public synchronized List<Lancamento> listarPorTipo(TipoLancamento tipo) {
+        if (tipo == null) {
+            throw new IllegalArgumentException("O tipo é obrigatório.");
+        }
+        List<Lancamento> resultado = new ArrayList<>();
+        for (Lancamento lancamento : lancamentos) {
+            if (lancamento.getTipo() == tipo) {
+                resultado.add(lancamento);
+            }
+        }
+        return resultado;
     }
 }
