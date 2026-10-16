@@ -2,7 +2,9 @@
 
 Projeto de estudo em Java para acompanhar receitas e despesas pessoais. A ideia é registrar os lançamentos, separar por categoria e consultar o saldo do mês.
 
-Por enquanto, o repositório contém só o esqueleto: configuração do Maven, aplicação Spring Boot, pastas organizadas e um teste de inicialização. Ainda não há cadastro de despesas, banco de dados, autenticação ou telas.
+O projeto está no começo: já tem a estrutura Spring Boot e a classe que representa um lançamento, com descrição, valor, data e tipo (receita ou despesa). Ainda não há cadastro pela API, banco de dados, autenticação ou telas.
+
+O valor usa `BigDecimal` e precisa ser maior que zero, tanto para receitas quanto para despesas. O tipo identifica se o dinheiro entra ou sai. Descrição, data e tipo são obrigatórios; espaços nas pontas da descrição são removidos. Por enquanto, a classe só permite consultar os dados depois de criada.
 
 ## Tecnologias
 
@@ -43,12 +45,12 @@ O teste atual verifica se a aplicação inicia sem precisar de um banco. Para ex
 ## Organização
 
 - `controller`: receberá as requisições da API.
-- `model`: receberá as classes dos lançamentos e categorias.
+- `model`: contém `Lancamento` e `TipoLancamento`; categorias serão adicionadas depois.
 - `service`: receberá as regras de negócio.
 - `repository`: receberá o acesso aos dados.
 - `src/main/resources`: configurações da aplicação.
 - `src/test/java`: testes automatizados.
 
-As quatro primeiras pastas estão vazias e usam `.gitkeep` somente para aparecerem no Git. Não há implementação dessas camadas nesta etapa.
+As pastas `controller`, `service` e `repository` ainda estão vazias e usam `.gitkeep` somente para aparecerem no Git. Ainda não há API de lançamentos nem acesso ao banco.
 
 O [plano de desenvolvimento](docs/proximos-passos.md) lista as próximas funcionalidades.

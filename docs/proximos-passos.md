@@ -1,14 +1,14 @@
 # Próximos passos
 
-Esta lista é um plano de estudo. Nenhuma das funcionalidades abaixo está implementada no esqueleto inicial.
+Esta lista acompanha o desenvolvimento. Os itens marcados já estão implementados; os demais são os próximos passos.
 
 ## Primeiro: lançamentos
 
-- Criar uma classe para receita e despesa, com descrição, valor e data.
-- Usar `BigDecimal` para os valores monetários.
-- Validar descrição obrigatória e valor maior que zero.
-- Cadastrar e listar lançamentos, começando sem banco.
-- Escrever testes das primeiras regras.
+- [x] Criar uma classe para receita e despesa, com descrição, valor e data.
+- [x] Usar `BigDecimal` para os valores monetários.
+- [x] Validar descrição obrigatória e valor maior que zero.
+- [ ] Cadastrar e listar lançamentos, começando sem banco.
+- [ ] Escrever testes das primeiras regras.
 
 ## Depois: organização e consultas
 
