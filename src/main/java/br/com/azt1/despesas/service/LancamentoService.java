@@ -37,4 +37,16 @@ public class LancamentoService {
     public List<Lancamento> listarPorMes(YearMonth mes) {
         return repository.listarPorMes(mes);
     }
+
+    public BigDecimal calcularSaldo(YearMonth mes) {
+        BigDecimal saldo = BigDecimal.ZERO;
+        for (Lancamento lancamento : repository.listarPorMes(mes)) {
+            if (lancamento.getTipo() == TipoLancamento.RECEITA) {
+                saldo = saldo.add(lancamento.getValor());
+            } else {
+                saldo = saldo.subtract(lancamento.getValor());
+            }
+        }
+        return saldo;
+    }
 }
