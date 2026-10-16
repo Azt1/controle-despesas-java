@@ -8,7 +8,7 @@ Esta lista acompanha o desenvolvimento. Os itens marcados já estão implementad
 - [x] Usar `BigDecimal` para os valores monetários.
 - [x] Validar descrição obrigatória e valor maior que zero.
 - [ ] Cadastrar e listar lançamentos, começando sem banco.
-- [ ] Escrever testes das primeiras regras.
+- [x] Escrever testes das primeiras regras.
 
 ## Depois: organização e consultas
 

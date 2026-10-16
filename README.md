@@ -40,7 +40,7 @@ No Linux ou macOS, use `./mvnw spring-boot:run`.
 .\mvnw.cmd test
 ```
 
-O teste atual verifica se a aplicação inicia sem precisar de um banco. Para executar os testes e gerar o arquivo `.jar`, use `.\mvnw.cmd verify`. O GitHub Actions executa essa verificação a cada push e pull request.
+Os testes verificam a inicialização sem banco e as regras de `Lancamento`: campos obrigatórios, valor positivo, remoção de espaços na descrição e preservação do valor em `BigDecimal`. Para executar os testes e gerar o arquivo `.jar`, use `.\mvnw.cmd verify`. O GitHub Actions está configurado para executar essa verificação a cada push e pull request.
 
 ## Organização
 
