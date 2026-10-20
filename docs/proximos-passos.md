@@ -11,7 +11,10 @@ Esta lista acompanha o desenvolvimento. Os itens marcados já estão implementad
 - [x] Escrever testes das primeiras regras.
 - [x] Consultar lançamentos por tipo ou mês e ano.
 - [x] Calcular o saldo de um mês e ano.
-- [ ] Expor o cadastro e as consultas pela API.
+- [x] Expor o cadastro e a listagem pela API.
+- [x] Tratar campos inválidos e erros de leitura do JSON com HTTP 400.
+- [x] Testar as rotas de cadastro e listagem.
+- [ ] Expor os filtros e o saldo mensal pela API.
 
 ## Depois: organização e consultas
 
