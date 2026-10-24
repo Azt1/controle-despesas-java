@@ -14,7 +14,8 @@ Esta lista acompanha o desenvolvimento. Os itens marcados já estão implementad
 - [x] Expor o cadastro e a listagem pela API.
 - [x] Tratar campos inválidos e erros de leitura do JSON com HTTP 400.
 - [x] Testar as rotas de cadastro e listagem.
-- [ ] Expor os filtros e o saldo mensal pela API.
+- [x] Expor o saldo mensal pela API, com validação do mês e testes HTTP.
+- [ ] Expor os filtros da listagem pela API.
 
 ## Depois: organização e consultas
 

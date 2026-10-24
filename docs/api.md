@@ -47,7 +47,34 @@ O valor precisa ser maior que zero. O tipo define se é entrada ou saída; não 
 Invoke-RestMethod -Uri "http://localhost:8080/api/lancamentos"
 ```
 
-Se não houver cadastro, a resposta JSON é `[]`. Os filtros e o cálculo de saldo ainda estão disponíveis somente nas classes Java, não nessa rota.
+Se não houver cadastro, a resposta JSON é `[]`. Essa rota ainda não aceita filtros por mês ou tipo.
+
+## Consultar o saldo mensal
+
+`GET /api/lancamentos/saldo?mes=2026-10` retorna HTTP `200`, com o mês consultado e o saldo: receitas menos despesas daquele mês e ano.
+
+```powershell
+Invoke-RestMethod -Uri "http://localhost:8080/api/lancamentos/saldo?mes=2026-10"
+```
+
+Se você cadastrou apenas a despesa de R$ 42,50 do exemplo anterior, o resultado é:
+
+```json
+{
+  "mes": "2026-10",
+  "saldo": -42.50
+}
+```
+
+O parâmetro `mes` é obrigatório e usa o formato `yyyy-MM`. Meses sem lançamentos retornam saldo zero. A consulta não altera os lançamentos e não inclui valores de outros meses ou anos.
+
+Mês ausente ou inválido, como `2026-13`, retorna HTTP `400`:
+
+```json
+{
+  "mensagem": "Informe o mês no formato yyyy-MM, por exemplo 2026-10."
+}
+```
 
 ## Respostas de erro
 
