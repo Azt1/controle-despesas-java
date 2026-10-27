@@ -15,13 +15,13 @@ Esta lista acompanha o desenvolvimento. Os itens marcados já estão implementad
 - [x] Tratar campos inválidos e erros de leitura do JSON com HTTP 400.
 - [x] Testar as rotas de cadastro e listagem.
 - [x] Expor o saldo mensal pela API, com validação do mês e testes HTTP.
-- [ ] Expor os filtros da listagem pela API.
+- [x] Expor os filtros da listagem pela API, separados ou combinados.
 
 ## Depois: organização e consultas
 
 - Adicionar categorias.
 - Permitir editar e excluir lançamentos.
-- Combinar os filtros por mês e tipo numa mesma consulta.
+- [x] Combinar os filtros por mês e tipo numa mesma consulta.
 - Consultar separadamente os totais de receitas e despesas do período.
 
 ## Persistência

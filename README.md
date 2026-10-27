@@ -2,7 +2,7 @@
 
 Projeto de estudo em Java para acompanhar receitas e despesas pessoais. A ideia é registrar os lançamentos, separar por categoria e consultar o saldo do mês.
 
-O projeto está no começo. Já é possível cadastrar e listar lançamentos e consultar o saldo mensal pela API. As classes Java também permitem filtrar lançamentos por tipo ou mês. Ainda não há banco de dados, autenticação ou telas.
+O projeto está no começo. Já é possível cadastrar e listar lançamentos, filtrar por mês e tipo e consultar o saldo mensal pela API. Ainda não há banco de dados, autenticação ou telas.
 
 O valor usa `BigDecimal` e precisa ser maior que zero, tanto para receitas quanto para despesas. O tipo identifica se o dinheiro entra ou sai. Descrição, data e tipo são obrigatórios; espaços nas pontas da descrição são removidos. Por enquanto, a classe só permite consultar os dados depois de criada.
 
@@ -10,13 +10,14 @@ O valor usa `BigDecimal` e precisa ser maior que zero, tanto para receitas quant
 
 - Cadastro pela rota `POST /api/lancamentos`, com resposta HTTP `201`.
 - Listagem pela rota `GET /api/lancamentos`, com resposta HTTP `200`.
+- Filtros opcionais na listagem: `?mes=2026-10`, `?tipo=DESPESA` ou `?mes=2026-10&tipo=DESPESA`.
 - Saldo mensal pela rota `GET /api/lancamentos/saldo?mes=2026-10`, com resposta HTTP `200`.
 - Respostas HTTP `400` para campos inválidos ou JSON que não possa ser lido.
 - Consulta de receitas ou despesas com `listarPorTipo`.
 - Consulta de um mês e ano com `listarPorMes`, usando `YearMonth`.
 - Saldo mensal com `calcularSaldo`: receitas menos despesas. Meses sem movimento retornam zero, e o saldo pode ser negativo.
 
-Os dados ficam numa lista em memória e são perdidos ao reiniciar a aplicação. As consultas devolvem cópias da lista, para que limpar um resultado não apague os dados internos. Os filtros da listagem ainda não estão disponíveis por HTTP; por enquanto, são usados nos testes.
+Os dados ficam numa lista em memória e são perdidos ao reiniciar a aplicação. As consultas devolvem cópias da lista, para que limpar um resultado não apague os dados internos. Sem filtros, a API lista todos os lançamentos; com os dois parâmetros, retorna somente os itens daquele mês e tipo.
 
 ## Tecnologias
 
