@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.azt1.despesas.model.Lancamento;
+import br.com.azt1.despesas.model.TipoLancamento;
 import br.com.azt1.despesas.dto.NovoLancamento;
 import br.com.azt1.despesas.dto.SaldoMensal;
 import br.com.azt1.despesas.service.LancamentoService;
@@ -29,8 +30,10 @@ public class LancamentoController {
     }
 
     @GetMapping
-    public List<Lancamento> listar() {
-        return service.listar();
+    public List<Lancamento> listar(
+            @RequestParam(required = false) @DateTimeFormat(pattern = "uuuu-MM") YearMonth mes,
+            @RequestParam(required = false) TipoLancamento tipo) {
+        return service.listar(mes, tipo);
     }
 
     @GetMapping("/saldo")
