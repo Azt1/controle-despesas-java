@@ -23,7 +23,16 @@ public class TratamentoErros {
         return new ErroResposta("Envie um JSON válido, com data no formato yyyy-MM-dd e tipo RECEITA ou DESPESA.");
     }
 
-    @ExceptionHandler({MethodArgumentTypeMismatchException.class, MissingServletRequestParameterException.class})
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErroResposta parametroInvalido(MethodArgumentTypeMismatchException erro) {
+        if ("tipo".equals(erro.getName())) {
+            return new ErroResposta("Informe o tipo como RECEITA ou DESPESA.");
+        }
+        return mesInvalido();
+    }
+
+    @ExceptionHandler(MissingServletRequestParameterException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErroResposta mesInvalido() {
         return new ErroResposta("Informe o mês no formato yyyy-MM, por exemplo 2026-10.");
