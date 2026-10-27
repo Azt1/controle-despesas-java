@@ -38,6 +38,19 @@ public class LancamentoRepository {
         return resultado;
     }
 
+    public synchronized List<Lancamento> listarPorMesETipo(YearMonth mes, TipoLancamento tipo) {
+        if (tipo == null) {
+            throw new IllegalArgumentException("O tipo é obrigatório.");
+        }
+        List<Lancamento> resultado = new ArrayList<>();
+        for (Lancamento lancamento : listarPorMes(mes)) {
+            if (lancamento.getTipo() == tipo) {
+                resultado.add(lancamento);
+            }
+        }
+        return resultado;
+    }
+
     public synchronized List<Lancamento> listarPorMes(YearMonth mes) {
         if (mes == null) {
             throw new IllegalArgumentException("O mês é obrigatório.");
