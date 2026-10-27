@@ -30,6 +30,19 @@ public class LancamentoService {
         return repository.listar();
     }
 
+    public List<Lancamento> listar(YearMonth mes, TipoLancamento tipo) {
+        if (mes != null && tipo != null) {
+            return repository.listarPorMesETipo(mes, tipo);
+        }
+        if (mes != null) {
+            return repository.listarPorMes(mes);
+        }
+        if (tipo != null) {
+            return repository.listarPorTipo(tipo);
+        }
+        return repository.listar();
+    }
+
     public List<Lancamento> listarPorTipo(TipoLancamento tipo) {
         return repository.listarPorTipo(tipo);
     }
