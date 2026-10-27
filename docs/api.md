@@ -47,7 +47,39 @@ O valor precisa ser maior que zero. O tipo define se é entrada ou saída; não 
 Invoke-RestMethod -Uri "http://localhost:8080/api/lancamentos"
 ```
 
-Se não houver cadastro, a resposta JSON é `[]`. Essa rota ainda não aceita filtros por mês ou tipo.
+Se não houver cadastro, a resposta JSON é `[]`.
+
+## Filtrar os lançamentos
+
+A listagem aceita os parâmetros opcionais `mes` e `tipo`. Use `yyyy-MM` para o mês e `RECEITA` ou `DESPESA` para o tipo, em letras maiúsculas.
+
+Para consultar somente as despesas:
+
+```powershell
+Invoke-RestMethod -Uri "http://localhost:8080/api/lancamentos?tipo=DESPESA"
+```
+
+Para consultar todos os lançamentos de outubro de 2026:
+
+```powershell
+Invoke-RestMethod -Uri "http://localhost:8080/api/lancamentos?mes=2026-10"
+```
+
+Os dois filtros podem ser usados juntos. Este exemplo retorna somente as despesas de outubro de 2026:
+
+```powershell
+Invoke-RestMethod -Uri "http://localhost:8080/api/lancamentos?mes=2026-10&tipo=DESPESA"
+```
+
+Sem parâmetros, a rota continua listando todos os lançamentos. Se nenhum lançamento corresponder aos filtros, retorna HTTP `200` com `[]`. O filtro por mês também considera o ano, e a consulta não altera os dados.
+
+Um mês como `2026-13` retorna HTTP `400`, com orientação sobre o formato. Um tipo como `OUTRO` retorna `400` com esta resposta:
+
+```json
+{
+  "mensagem": "Informe o tipo como RECEITA ou DESPESA."
+}
+```
 
 ## Consultar o saldo mensal
 
