@@ -17,6 +17,7 @@ import br.com.azt1.despesas.model.Lancamento;
 import br.com.azt1.despesas.model.TipoLancamento;
 import br.com.azt1.despesas.dto.NovoLancamento;
 import br.com.azt1.despesas.dto.SaldoMensal;
+import br.com.azt1.despesas.dto.ResumoMensal;
 import br.com.azt1.despesas.service.LancamentoService;
 
 @RestController
@@ -40,6 +41,12 @@ public class LancamentoController {
     public SaldoMensal consultarSaldo(
             @RequestParam @DateTimeFormat(pattern = "uuuu-MM") YearMonth mes) {
         return new SaldoMensal(mes, service.calcularSaldo(mes));
+    }
+
+    @GetMapping("/resumo")
+    public ResumoMensal consultarResumo(
+            @RequestParam @DateTimeFormat(pattern = "uuuu-MM") YearMonth mes) {
+        return service.consultarResumo(mes);
     }
 
     @PostMapping
