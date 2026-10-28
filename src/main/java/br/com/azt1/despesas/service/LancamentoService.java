@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import br.com.azt1.despesas.model.Lancamento;
 import br.com.azt1.despesas.model.TipoLancamento;
 import br.com.azt1.despesas.repository.LancamentoRepository;
+import br.com.azt1.despesas.dto.ResumoMensal;
 
 @Service
 public class LancamentoService {
@@ -52,14 +53,19 @@ public class LancamentoService {
     }
 
     public BigDecimal calcularSaldo(YearMonth mes) {
-        BigDecimal saldo = BigDecimal.ZERO;
+        return consultarResumo(mes).saldo();
+    }
+
+    public ResumoMensal consultarResumo(YearMonth mes) {
+        BigDecimal receitas = BigDecimal.ZERO;
+        BigDecimal despesas = BigDecimal.ZERO;
         for (Lancamento lancamento : repository.listarPorMes(mes)) {
             if (lancamento.getTipo() == TipoLancamento.RECEITA) {
-                saldo = saldo.add(lancamento.getValor());
+                receitas = receitas.add(lancamento.getValor());
             } else {
-                saldo = saldo.subtract(lancamento.getValor());
+                despesas = despesas.add(lancamento.getValor());
             }
         }
-        return saldo;
+        return new ResumoMensal(mes, receitas, despesas, receitas.subtract(despesas));
     }
 }
