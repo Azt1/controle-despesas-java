@@ -22,7 +22,7 @@ Esta lista acompanha o desenvolvimento. Os itens marcados já estão implementad
 - Adicionar categorias.
 - Permitir editar e excluir lançamentos.
 - [x] Combinar os filtros por mês e tipo numa mesma consulta.
-- Consultar separadamente os totais de receitas e despesas do período.
+- [x] Consultar separadamente os totais de receitas e despesas do período, com saldo no resumo mensal.
 
 ## Persistência
 

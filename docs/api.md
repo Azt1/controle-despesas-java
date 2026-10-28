@@ -108,6 +108,29 @@ Mês ausente ou inválido, como `2026-13`, retorna HTTP `400`:
 }
 ```
 
+## Consultar o resumo mensal
+
+`GET /api/lancamentos/resumo?mes=2026-10` retorna HTTP `200`, com os totais de receitas, despesas e o saldo do mês e ano informados.
+
+```powershell
+Invoke-RestMethod -Uri "http://localhost:8080/api/lancamentos/resumo?mes=2026-10"
+```
+
+Se houver apenas a despesa de R$ 42,50 do exemplo de cadastro, a resposta será:
+
+```json
+{
+  "mes": "2026-10",
+  "receitas": 0,
+  "despesas": 42.50,
+  "saldo": -42.50
+}
+```
+
+Os totais de receitas e despesas são somados separadamente. O saldo é a diferença entre eles. Meses sem movimento retornam os três valores zerados, e lançamentos de outros períodos não entram na conta.
+
+Assim como na consulta de saldo, `mes` é obrigatório e deve usar `yyyy-MM`. Mês ausente, vazio ou inválido retorna HTTP `400` com uma orientação sobre o formato. A rota `/saldo` continua disponível para consultar apenas o saldo.
+
 ## Respostas de erro
 
 Campos inválidos retornam HTTP `400`. Por exemplo, um cadastro com valor zero recebe:

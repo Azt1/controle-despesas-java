@@ -2,7 +2,7 @@
 
 Projeto de estudo em Java para acompanhar receitas e despesas pessoais. A ideia é registrar os lançamentos, separar por categoria e consultar o saldo do mês.
 
-O projeto está no começo. Já é possível cadastrar e listar lançamentos, filtrar por mês e tipo e consultar o saldo mensal pela API. Ainda não há banco de dados, autenticação ou telas.
+O projeto está no começo. Já é possível cadastrar e listar lançamentos, filtrar por mês e tipo e consultar o saldo e os totais mensais pela API. Ainda não há banco de dados, autenticação ou telas.
 
 O valor usa `BigDecimal` e precisa ser maior que zero, tanto para receitas quanto para despesas. O tipo identifica se o dinheiro entra ou sai. Descrição, data e tipo são obrigatórios; espaços nas pontas da descrição são removidos. Por enquanto, a classe só permite consultar os dados depois de criada.
 
@@ -12,6 +12,7 @@ O valor usa `BigDecimal` e precisa ser maior que zero, tanto para receitas quant
 - Listagem pela rota `GET /api/lancamentos`, com resposta HTTP `200`.
 - Filtros opcionais na listagem: `?mes=2026-10`, `?tipo=DESPESA` ou `?mes=2026-10&tipo=DESPESA`.
 - Saldo mensal pela rota `GET /api/lancamentos/saldo?mes=2026-10`, com resposta HTTP `200`.
+- Resumo mensal pela rota `GET /api/lancamentos/resumo?mes=2026-10`, com receitas, despesas e saldo separados.
 - Respostas HTTP `400` para campos inválidos ou JSON que não possa ser lido.
 - Consulta de receitas ou despesas com `listarPorTipo`.
 - Consulta de um mês e ano com `listarPorMes`, usando `YearMonth`.
@@ -59,8 +60,8 @@ Os testes verificam a inicialização sem banco, os campos obrigatórios, os val
 
 ## Organização
 
-- `controller`: recebe as requisições de cadastro, listagem e saldo e trata os erros.
-- `dto`: define os dados recebidos no cadastro e a resposta da consulta de saldo.
+- `controller`: recebe as requisições de cadastro, listagem, saldo e resumo e trata os erros.
+- `dto`: define os dados recebidos no cadastro e as respostas de saldo e resumo.
 - `model`: contém `Lancamento` e `TipoLancamento`; categorias serão adicionadas depois.
 - `service`: contém o cadastro, as consultas e o cálculo de saldo.
 - `repository`: guarda os lançamentos em memória e aplica os filtros.
